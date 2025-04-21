@@ -35,7 +35,13 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/exits/{customer-id}")
-    public ResponseEntity<Boolean> findById(@PathVariable("customer-id") String custometId) {
+    public ResponseEntity<CustomerResponse> findById(@PathVariable("customer-id") String custometId) {
         return ResponseEntity.ok(customerService.findById(custometId));
+    }
+
+    @DeleteMapping(value = "/{customer-id}")
+    public ResponseEntity<Void> delete(@PathVariable("customer-id") String custometId) {
+        customerService.deleteCustomer(custometId);
+        return ResponseEntity.accepted().build();
     }
 }

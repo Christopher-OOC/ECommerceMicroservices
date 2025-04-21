@@ -57,4 +57,14 @@ public class CustomerService {
     public Boolean exitsById(String custometId) {
         return customerRepository.findById(custometId).isPresent();
     }
+
+    public CustomerResponse findById(String custometId) {
+        return customerRepository.findById(custometId).map(customerMapper::fromCustomer)
+                .orElseThrow(() -> new CustomerNotFoundException(String.format("No customer found with the " +
+                        "provided ID:: %s", custometId)));
+    }
+
+    public void deleteCustomer(String custometId) {
+        customerRepository.deleteById(custometId);
+    }
 }
