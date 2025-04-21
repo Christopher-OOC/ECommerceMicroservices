@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Product
+  datasource:
+    generateUniqueName: false
+    name: products
