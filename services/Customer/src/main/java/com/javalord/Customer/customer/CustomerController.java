@@ -29,19 +29,19 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findAllCustomers());
     }
 
-    @GetMapping(value = "/exits/{customer-id}")
-    public ResponseEntity<Boolean> exitsById(@PathVariable("customer-id") String custometId) {
-        return ResponseEntity.ok(customerService.exitsById(custometId));
+    @GetMapping(value = "/exits/{customerId}")
+    public ResponseEntity<Boolean> exitsById(@PathVariable("customerId") String customerId) {
+        return ResponseEntity.ok(customerService.exitsById(customerId));
     }
 
-    @GetMapping(value = "/exits/{customer-id}")
-    public ResponseEntity<CustomerResponse> findById(@PathVariable("customer-id") String custometId) {
-        return ResponseEntity.ok(customerService.findById(custometId));
+    @GetMapping(value = "/{customerId}")
+    public ResponseEntity<CustomerResponse> findById(@PathVariable("customerId") String customerId) {
+        return ResponseEntity.ok(customerService.findById(customerId));
     }
 
-    @DeleteMapping(value = "/{customer-id}")
-    public ResponseEntity<Void> delete(@PathVariable("customer-id") String custometId) {
-        customerService.deleteCustomer(custometId);
+    @DeleteMapping(value = "/{customerId}")
+    public ResponseEntity<Void> delete(@PathVariable("customerId") String customerId) {
+        customerService.deleteCustomer(customerId);
         return ResponseEntity.accepted().build();
     }
 }

@@ -1,0 +1,12 @@
+server:
+  port: 8050
+spring:
+  datasource:
+    generateUniqueName: false
+    name: products
+    username: chris
+    password: chris
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    showSql: true
