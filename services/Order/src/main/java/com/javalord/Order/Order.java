@@ -30,6 +30,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
     private String customerId;
+    @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLines;
     @CreationTimestamp
     @Column(updatable = false, nullable = false)
