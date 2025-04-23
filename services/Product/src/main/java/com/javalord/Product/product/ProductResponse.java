@@ -1,4 +1,15 @@
 package com.javalord.Product.product;
 
-public class ProductResponse {
+import java.math.BigInteger;
+
+public record ProductResponse(
+        Integer id,
+        String name,
+        String description,
+        double availableQuantity,
+        BigInteger price,
+        Integer categoryId,
+        String categoryName,
+        String categoryDescription
+) {
 }
