@@ -1,14 +1,4 @@
-server:
-  port: 8070
 spring:
   application:
     name: Order
-  datasource:
-    generateUniqueName: false
-    name: order
-application:
-  config:
-    customerUrl: http://localhost:8090/api/v1/customers
-    paymentUrl: http://localhost:8060/api/v1/payments
-    productUrl: http://localhost:8050/api/v1/products
 
