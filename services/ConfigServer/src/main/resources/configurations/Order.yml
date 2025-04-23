@@ -10,3 +10,4 @@ application:
     paymentUrl: http://localhost:8060/api/v1/payments
     productUrl: http://localhost:8050/api/v1/products
 
+
