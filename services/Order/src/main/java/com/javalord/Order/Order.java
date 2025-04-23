@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
@@ -29,6 +31,10 @@ public class Order {
     private PaymentMethod paymentMethod;
     private String customerId;
     private List<OrderLine> orderLines;
+    @CreationTimestamp
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdAt;
+    @LastModifiedDate
+    @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 }
