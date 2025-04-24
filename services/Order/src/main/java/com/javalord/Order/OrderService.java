@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 @RequiredArgsConstructor
 public class OrderService {
+    private final OrderRepository orderRepository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private OrderMapper orderMapper;
 
     public Integer createdOrder(@Valid OrderRequest request) {
         // check customer --> OpenFeign
@@ -20,8 +22,10 @@ public class OrderService {
                 .orElseThrow(() -> new BusinessException("No customer"));
 
         //purchase the product
+        this.productClient.purchaseProducts(request.products());
 
         //persist order
+        var order = this.orderRepository.save(orderMapper.toOrder(request));
 
         //persist order line
 
