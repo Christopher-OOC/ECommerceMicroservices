@@ -1,9 +1,9 @@
-package com.javalord.Customer.customer;
+package com.javalord.Order.customer;
 
 public record CustomerResponse(
         String id,
         String firstname,
         String lastname,
-        String email,
-        Address address) {
+        String email
+) {
 }
