@@ -3,6 +3,7 @@ package com.javalord.Order;
 import com.javalord.Order.customer.CustomerClient;
 import com.javalord.Order.exception.BusinessException;
 import com.javalord.Order.product.ProductClient;
+import com.javalord.Order.product.PurchaseRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
-    private OrderMapper orderMapper;
+    private final OrderMapper orderMapper;
+    private final OrderLineService orderLineService;
 
     public Integer createdOrder(@Valid OrderRequest request) {
         // check customer --> OpenFeign
@@ -28,8 +30,18 @@ public class OrderService {
         var order = this.orderRepository.save(orderMapper.toOrder(request));
 
         //persist order line
+        for (PurchaseRequest purchaseRequest : request.products()) {
+            orderLineService.saveOrderLine(
+                    new OrderLineRequest(
+                            null,
+                            order.getId(),
+                            purchaseRequest.productId(),
+                            purchaseRequest.quantity()
+                    )
+            );
+        }
 
-        //start payment process
+        // todo start payment process
 
         //send the order confirmation
     }
