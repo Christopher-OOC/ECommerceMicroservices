@@ -1,7 +1,10 @@
 package com.javalord.Order;
 
+import com.javalord.Order.orderline.OrderLineResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,5 +15,10 @@ public class OrderLineService {
     public Integer saveOrderLine(OrderLineRequest request) {
         var order = orderLineMapper.toOrderLine(request);
         return orderLineRepository.save(order).getId();
+    }
+
+    public List<OrderLineResponse> findAllByOrderId(Integer orderId) {
+
+
     }
 }

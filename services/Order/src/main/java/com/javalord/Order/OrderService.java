@@ -6,6 +6,7 @@ import com.javalord.Order.kafka.OrderConfirmation;
 import com.javalord.Order.kafka.OrderProducer;
 import com.javalord.Order.product.ProductClient;
 import com.javalord.Order.product.PurchaseRequest;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,11 @@ public class OrderService {
                 .stream()
                 .map(orderMapper::fromOrder)
                 .toList();
+    }
+
+    public OrderResponse findById(Integer orderId) {
+        return orderRepository.findById(orderId)
+                .map(orderMapper::fromOrder)
+                .orElseThrow(() -> new EntityNotFoundException("No order found!"));
     }
 }
