@@ -65,6 +65,6 @@ public class OrderService {
         return orderRepository.findAll()
                 .stream()
                 .map(orderMapper::fromOrder)
-
+                .toList();
     }
 }

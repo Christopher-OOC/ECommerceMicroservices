@@ -23,7 +23,5 @@ public class OrderMapper {
                 order.getPaymentMethod(),
                 order.getCustomerId()
         );
-
-
     }
 }

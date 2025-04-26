@@ -2,6 +2,7 @@ package com.javalord.Order;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,11 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<OrderResponse>> findAll() {
         return ResponseEntity.ok(orderService.findAll());
+    }
+
+    @GetMapping(value = "/{orderId}")
+    public ResponseEntity<OrderResponse> findById(@PathVariable("orderId") Integer orderId) {
+        return ResponseEntity.ok(orderService.findById(orderId));
     }
 
 }
