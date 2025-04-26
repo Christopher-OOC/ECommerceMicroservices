@@ -1,6 +1,7 @@
 package com.javalord.Order;
 
 import com.javalord.Order.orderline.OrderLine;
+import com.javalord.Order.orderline.OrderLineResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,12 @@ public class OrderLineMapper {
                         .build())
                 .productId(request.productId())
                 .build();
+    }
+
+    public OrderLineResponse toOrderLineResponse(OrderLine orderLine) {
+        return new OrderLineResponse(
+                orderLine.getId(),
+                orderLine.getQuantity()
+        );
     }
 }

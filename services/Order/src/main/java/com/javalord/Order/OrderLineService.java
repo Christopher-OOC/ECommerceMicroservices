@@ -18,7 +18,9 @@ public class OrderLineService {
     }
 
     public List<OrderLineResponse> findAllByOrderId(Integer orderId) {
-
-
+        return orderLineRepository.findAllByOrderId(orderId)
+                .stream()
+                .map(orderLineMapper::toOrderLineResponse)
+                .toList();
     }
 }
