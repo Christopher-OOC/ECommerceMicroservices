@@ -12,4 +12,8 @@ public class NotificationProducer {
 
     private final KafkaTemplate<String, PaymentNotificationRequest> kafkaTemplate;
 
+    public void sendNotification(PaymentNotificationRequest request) {
+
+    }
+
 }
