@@ -4,6 +4,8 @@ import com.javalord.Order.customer.CustomerClient;
 import com.javalord.Order.exception.BusinessException;
 import com.javalord.Order.kafka.OrderConfirmation;
 import com.javalord.Order.kafka.OrderProducer;
+import com.javalord.Order.payment.PaymentClient;
+import com.javalord.Order.payment.PaymentRequest;
 import com.javalord.Order.product.ProductClient;
 import com.javalord.Order.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,6 +25,7 @@ public class OrderService {
     private final OrderMapper orderMapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     public Integer createdOrder(@Valid OrderRequest request) {
         // check customer --> OpenFeign
@@ -48,6 +51,16 @@ public class OrderService {
         }
 
         // todo start payment process
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                request.id(),
+                request.reference(),
+                customer
+        );
+
+        paymentClient.requestOrderPayment(paymentRequest);
+
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
                         request.reference(),
