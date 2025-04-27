@@ -1,3 +1,14 @@
+server:
+  port: 8050
 spring:
   application:
     name: Payment
+  datasource:
+    generateUniqueName: false
+    name: products
+    username: chris
+    password: chris
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    showSql: true
