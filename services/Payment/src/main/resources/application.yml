@@ -1,24 +1,3 @@
-server:
-  port: 8050
 spring:
   application:
     name: Payment
-  datasource:
-    generateUniqueName: false
-    name: payments
-    username: chris
-    password: chris
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    showSql: true
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      keySerializer: org.apache.kafka.common.serialization.StringSerializer
-      valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring:
-          json:
-            type:
-              mapping: paymentConfirmation:com.javalord.payment.notification.PaymentNotificationRequest
