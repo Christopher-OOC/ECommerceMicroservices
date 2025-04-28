@@ -2,6 +2,7 @@ package com.javalord.Notification.notification.kafka.order;
 
 import com.javalord.Notification.notification.Notification;
 import com.javalord.Notification.notification.NotificationType;
+import com.javalord.Notification.notification.email.EmailService;
 import com.javalord.Notification.notification.kafka.payment.NotificationRepository;
 import com.javalord.Notification.notification.kafka.payment.PaymentConfirmation;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 public class NotificationConsumer {
 
     private final NotificationRepository notificationRepository;
+    private final EmailService emailService;
 
     @KafkaListener(topics = "payment-topic")
     public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation) {
@@ -29,7 +31,8 @@ public class NotificationConsumer {
                         .build()
         );
 
-        // todo send an email
+        var customerName = paymentConfirmation.customerFirstName() + " " + paymentConfirmation.customerLastName();
+
 
     }
 
