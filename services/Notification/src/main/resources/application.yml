@@ -1,43 +1,6 @@
-server:
-  port: 8040
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888
   application:
     name: Notification
-  data:
-    mongodb:
-      username: chris
-      password: chris
-      host: localhost
-      port: 27017
-      database: customer
-      authentication-database: admin
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      groupId: paymentGroup,orderGroup
-      autoOffsetReset: earliest
-      keyDeserializer: org.apache.kafka.common.serialization.StringSerializer
-      valueDeserializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring:
-          json:
-            type:
-              mapping: orderConfirmation:com.javalord.Notification.notification.kafka.order.OrderConfirmation,paymentConfirmation:com.javalord.Notification.notification.kafka.payment.PaymentConfirmation
-            trusted:
-              packages: "*"
-  mail:
-    host: localhost
-    port: 1025
-    username: chris
-    password: chris
-    properties:
-      mail:
-        smtp:
-          trust: "*"
-        auth: true
-        startTls:
-          enabled: true
-          connectionTimeout: 5000
-          timeout: 3000
-          writeTimeout: 5000
 
