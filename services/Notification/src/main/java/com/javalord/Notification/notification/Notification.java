@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -22,6 +24,7 @@ public class Notification {
     private NotificationType type;
     private OrderConfirmation orderConfirmation;
     private PaymentConfirmation paymentConfirmation;
+    private LocalDateTime notificationDate;
 
 
 
