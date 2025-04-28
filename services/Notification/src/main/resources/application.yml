@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Notification
+  data:
+    mongodb:
+      username: chris
+      password: chris
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: paymentConfirmation:com.javalord.payment.notification.PaymentNotificationRequest
+

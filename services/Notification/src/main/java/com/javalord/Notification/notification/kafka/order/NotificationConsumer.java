@@ -42,7 +42,7 @@ public class NotificationConsumer {
     }
 
     @KafkaListener(topics = "order-topic")
-    public void consumeOrderSuccessNotification(OrderConfirmation orderConfirmation) {
+    public void consumeOrderSuccessNotification(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info("Consuming the message from order-topic!");
         notificationRepository.save(
                 Notification.builder()
@@ -53,7 +53,7 @@ public class NotificationConsumer {
         );
 
         var customerName = orderConfirmation.customer().firstName() + " " + orderConfirmation.customer().lastName();
-        emailService.sendPaymentSuccessEmail(
+        emailService.sendOrderConfirmationEmail(
                 orderConfirmation.customer().email(),
                 customerName,
                 orderConfirmation.totalAmount(),
