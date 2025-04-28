@@ -1,3 +1,5 @@
+server:
+  port: 8040
 spring:
   application:
     name: Notification
@@ -21,4 +23,21 @@ spring:
           json:
             type:
               mapping: orderConfirmation:com.javalord.Notification.notification.kafka.order.OrderConfirmation,paymentConfirmation:com.javalord.Notification.notification.kafka.payment.PaymentConfirmation
+            trusted:
+              packages: "*"
+  mail:
+    host: localhost
+    port: 1025
+    username: chris
+    password: chris
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        startTls:
+          enabled: true
+          connectionTimeout: 5000
+          timeout: 3000
+          writeTimeout: 5000
 
