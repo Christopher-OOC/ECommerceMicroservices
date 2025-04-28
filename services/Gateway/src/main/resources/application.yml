@@ -10,4 +10,11 @@ spring:
         id: customer-service
         uri: lb://Customer
         predicates[0]: Path=/api/v1/customers/**
-        predicates[1]:
+      routes[1]:
+        id: customer-service
+        uri: lb://Customer
+        predicates[0]: Path=/api/v1/customers/**
+      routes[2]:
+        id: customer-service
+        uri: lb://Customer
+        predicates[0]: Path=/api/v1/customers/**
