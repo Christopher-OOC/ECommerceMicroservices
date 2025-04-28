@@ -5,6 +5,7 @@ import com.javalord.Notification.notification.NotificationType;
 import com.javalord.Notification.notification.email.EmailService;
 import com.javalord.Notification.notification.kafka.payment.NotificationRepository;
 import com.javalord.Notification.notification.kafka.payment.PaymentConfirmation;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -21,7 +22,7 @@ public class NotificationConsumer {
     private final EmailService emailService;
 
     @KafkaListener(topics = "payment-topic")
-    public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation) {
+    public void consumePaymentSuccessNotification(PaymentConfirmation paymentConfirmation) throws MessagingException {
         log.info("Consuming the message from payment-topic!");
         notificationRepository.save(
                 Notification.builder()
@@ -32,7 +33,12 @@ public class NotificationConsumer {
         );
 
         var customerName = paymentConfirmation.customerFirstName() + " " + paymentConfirmation.customerLastName();
-
+        emailService.sendPaymentSuccessEmail(
+                paymentConfirmation.customerEmail(),
+                customerName,
+                paymentConfirmation.amount(),
+                paymentConfirmation.orderReference()
+        );
 
     }
 
