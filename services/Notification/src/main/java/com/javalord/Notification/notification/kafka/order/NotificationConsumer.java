@@ -38,9 +38,9 @@ public class NotificationConsumer {
         log.info("Consuming the message from order-topic!");
         notificationRepository.save(
                 Notification.builder()
-                        .type(NotificationType.PAYMENT_CONFIRMATION)
+                        .type(NotificationType.ORDER_CONFIRMATION)
                         .notificationDate(LocalDateTime.now())
-                        .paymentConfirmation(paymentConfirmation)
+                        .orderConfirmation(orderConfirmation)
                         .build()
         );
 
