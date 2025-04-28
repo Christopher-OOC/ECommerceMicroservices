@@ -1,5 +1,8 @@
 package com.javalord.Notification.notification;
 
+import com.javalord.Notification.notification.kafka.order.OrderConfirmation;
+import com.javalord.Notification.notification.kafka.payment.PaymentConfirmation;
+import jakarta.annotation.Generated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +20,9 @@ public class Notification {
     @Id
     private String id;
     private NotificationType type;
+    private OrderConfirmation orderConfirmation;
+    private PaymentConfirmation paymentConfirmation;
+
 
 
 }
