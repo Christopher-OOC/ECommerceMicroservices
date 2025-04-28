@@ -13,11 +13,12 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
       groupId: paymentGroup,orderGroup
-      keySerializer: org.apache.kafka.common.serialization.StringSerializer
-      valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
+      autoOffsetReset: earliest
+      keyDeserializer: org.apache.kafka.common.serialization.StringSerializer
+      valueDeserializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring:
           json:
             type:
-              mapping: paymentConfirmation:com.javalord.payment.notification.PaymentNotificationRequest
+              mapping: orderConfirmation:com.javalord.Notification.notification.kafka.order.OrderConfirmation,paymentConfirmation:com.javalord.Notification.notification.kafka.payment.PaymentConfirmation
 
