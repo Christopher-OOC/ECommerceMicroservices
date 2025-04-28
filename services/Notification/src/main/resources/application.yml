@@ -10,8 +10,9 @@ spring:
       database: customer
       authentication-database: admin
   kafka:
-    producer:
+    consumer:
       bootstrap-servers: localhost:9092
+      groupId: paymentGroup,orderGroup
       keySerializer: org.apache.kafka.common.serialization.StringSerializer
       valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
