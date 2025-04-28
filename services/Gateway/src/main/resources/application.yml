@@ -11,10 +11,10 @@ spring:
         uri: lb://Customer
         predicates[0]: Path=/api/v1/customers/**
       routes[1]:
-        id: customer-service
+        id: order-service
         uri: lb://Customer
-        predicates[0]: Path=/api/v1/customers/**
+        predicates[0]: Path=/api/v1/orders/**
       routes[2]:
-        id: customer-service
-        uri: lb://Customer
-        predicates[0]: Path=/api/v1/customers/**
+        id: order-line-service
+        uri: lb://Order
+        predicates[0]: Path=/api/v1/order-lines/**
