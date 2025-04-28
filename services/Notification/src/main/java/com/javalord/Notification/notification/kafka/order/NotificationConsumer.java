@@ -39,7 +39,6 @@ public class NotificationConsumer {
                 paymentConfirmation.amount(),
                 paymentConfirmation.orderReference()
         );
-
     }
 
     @KafkaListener(topics = "order-topic")
@@ -53,7 +52,17 @@ public class NotificationConsumer {
                         .build()
         );
 
-        // todo send an email
+        var customerName = orderConfirmation.customer().firstName() + " " + orderConfirmation.customer().lastName();
+        emailService.sendPaymentSuccessEmail(
+                orderConfirmation.customer().email(),
+                customerName,
+                orderConfirmation.totalAmount(),
+                orderConfirmation.orderReference(),
+                orderConfirmation.products()
+        );
+
+
+
 
     }
 }
