@@ -29,5 +29,22 @@ public class NotificationConsumer {
                         .build()
         );
 
+        // todo send an email
+
+    }
+
+    @KafkaListener(topics = "order-topic")
+    public void consumeOrderSuccessNotification(OrderConfirmation orderConfirmation) {
+        log.info("Consuming the message from order-topic!");
+        notificationRepository.save(
+                Notification.builder()
+                        .type(NotificationType.PAYMENT_CONFIRMATION)
+                        .notificationDate(LocalDateTime.now())
+                        .paymentConfirmation(paymentConfirmation)
+                        .build()
+        );
+
+        // todo send an email
+
     }
 }
