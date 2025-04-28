@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes[0]:
+        id: customer-service
+        uri: lb://Customer
+        predicates[0]: Path=/api/v1/customers/**
+      routes[1]:
+        id: order-service
+        uri: lb://Customer
+        predicates[0]: Path=/api/v1/orders/**
+      routes[2]:
+        id: order-line-service
+        uri: lb://Order
+        predicates[0]: Path=/api/v1/order-lines/**
+      routes[3]:
+        id: product-service
+        uri: lb://Product
+        predicates[0]: Path=/api/v1/products/**
+      routes[4]:
+        id: payment-service
+        uri: lb://Payment
+        predicates[0]: Path=/api/v1/payments/**
