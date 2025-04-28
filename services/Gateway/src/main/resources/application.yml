@@ -18,3 +18,11 @@ spring:
         id: order-line-service
         uri: lb://Order
         predicates[0]: Path=/api/v1/order-lines/**
+      routes[3]:
+        id: product-service
+        uri: lb://Product
+        predicates[0]: Path=/api/v1/products/**
+      routes[4]:
+        id: payment-service
+        uri: lb://Payment
+        predicates[0]: Path=/api/v1/payments/**
