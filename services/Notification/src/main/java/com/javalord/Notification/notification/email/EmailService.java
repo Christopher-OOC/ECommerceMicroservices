@@ -73,8 +73,9 @@ public class EmailService {
         final String templateName = EmailTemplates.ORDER_CONFIRMATION.getTemplate();
         Map<String, Object> variables = new HashMap<>();
         variables.put("customerName", customerName);
-        variables.put("amount", amount);
+        variables.put("totalAmount", amount);
         variables.put("orderReference", orderReference);
+        variables.put("products", products);
 
         Context context = new Context();
         context.setVariables(variables);
@@ -92,5 +93,4 @@ public class EmailService {
             log.warn("Error in sending order email");
         }
     }
-
 }
