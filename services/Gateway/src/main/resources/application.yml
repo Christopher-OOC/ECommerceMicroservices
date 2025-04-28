@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes[0]:
+        id: customer-service
+        uri: lb://Customer
+        predicates[0]: Path=/api/v1/customers/**
+        predicates[1]:

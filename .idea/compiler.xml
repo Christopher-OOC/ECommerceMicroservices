@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Discovery" />
+        <module name="Gateway" />
         <module name="ConfigServer" />
       </profile>
       <profile name="Annotation profile for Product" enabled="true">
@@ -47,6 +48,7 @@
       <module name="ConfigServer" options="-parameters" />
       <module name="Customer" options="-parameters" />
       <module name="Discovery" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
       <module name="Notification" options="-parameters" />
       <module name="Order" options="-parameters" />
       <module name="Payment" options="-parameters" />
