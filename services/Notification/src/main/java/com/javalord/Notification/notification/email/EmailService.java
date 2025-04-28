@@ -1,7 +1,6 @@
 package com.javalord.Notification.notification.email;
 
 import com.javalord.Notification.notification.kafka.order.Product;
-import com.javalord.Notification.notification.kafka.payment.PaymentConfirmation;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
